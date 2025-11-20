@@ -2,7 +2,8 @@ const express = require("express");
 const { spawn } = require("child_process");
 const path = require("path");          // 🔥 ADD THIS
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
+
 
 app.use(express.json());
 
@@ -957,4 +958,5 @@ app.listen(PORT, () => {
 });
 app.get("/", (req, res) => {
     res.send("Backend running!");});
+
 
