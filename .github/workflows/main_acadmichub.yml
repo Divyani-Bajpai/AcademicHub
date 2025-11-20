@@ -6,6 +6,10 @@ on:
       - main
   workflow_dispatch:
 
+permissions:
+  id-token: write   # REQUIRED for Azure OIDC login
+  contents: read
+
 jobs:
 
   build:
@@ -20,11 +24,11 @@ jobs:
         with:
           node-version: "22.x"
 
-      - name: Install dependencies (backend)
+      - name: Install backend dependencies
         working-directory: aca
         run: npm install
 
-      - name: Upload artifact (backend folder)
+      - name: Upload backend artifact
         uses: actions/upload-artifact@v4
         with:
           name: backend-app
@@ -33,6 +37,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build
+    permissions:
+      id-token: write     # REQUIRED for Azure login
+      contents: read
 
     steps:
       - name: Download artifact
