@@ -43,14 +43,12 @@ jobs:
       - name: Azure Login
         uses: azure/login@v2
         with:
-          client-id: ${{AZUREAPPSERVICE_CLIENTID_636DEDBB1E8843F59A1409052A287E99}}
-          tenant-id: ${{AZUREAPPSERVICE_TENANTID_31216930984A4FF2807E8CF6D20CB232secrets.AZURE_TENANT_ID}}
-          subscription-id: ${{AZUREAPPSERVICE_SUBSCRIPTIONID_287DB77ECF4841C4A5C36F2DD2E43C54}}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_636DEDBB1E8843F59A1409052A287E99 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_31216930984A4FF2807E8CF6D20CB232 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_287DB77ECF4841C4A5C36F2DD2E43C54 }}
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
           app-name: "Acadmichub"
           package: .
-
-
